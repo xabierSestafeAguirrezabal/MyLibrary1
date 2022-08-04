@@ -68,7 +68,7 @@ public struct MyLibrary {
         // insert json data to the request
         request.addValue("application/json;charset=UTF-8", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue("Authorization", forHTTPHeaderField: apiKey)
+        request.addValue(apiKey, forHTTPHeaderField: "Authorization")
         request.httpBody = jsonData
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
