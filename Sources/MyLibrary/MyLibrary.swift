@@ -57,6 +57,30 @@ public struct MyLibrary {
                 user: ModelsUserRequest(id: userId),
                 connected_bssid: connectedWifi) // ModelsTransactionRequest | Transaction info
         print("JSONNNNNNN: ", String(describing: transaction))
+//        RestService().postRequest("https://testing.transaction.lbfraud.ironchip.com", data: transaction)
+
+        let jsonData = try? JSONSerialization.data(withJSONObject: transaction)
+
+        // create post request
+        let url = URL(string: "https://testing.transaction.lbfraud.ironchip.com")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+
+        // insert json data to the request
+        request.httpBody = jsonData
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                return
+            }
+            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+            if let responseJSON = responseJSON as? [String: Any] {
+                print(responseJSON)
+            }
+        }
+
+        task.resume()
         // transaction endpoint
 //        ClientAPI.transactionPost(apiKey: apiKey,transaction: transaction) { (response, error) in
 //            guard error == nil else {
@@ -69,11 +93,6 @@ public struct MyLibrary {
 //            }
 //        }
     }
-    
-//    public func permissionStatus() -> String {
-//         let status: String = Gps().checkPermissionStatus()
-//         return status
-//     }
     
     func getWifi() -> String {
         var wifi: String = ""
