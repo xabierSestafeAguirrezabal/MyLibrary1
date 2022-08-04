@@ -57,9 +57,39 @@ public struct MyLibrary {
             user: ModelsUserRequest(id: userId),
             connected_bssid: connectedWifi) // ModelsTransactionRequest | Transaction info
         print("JSONNNNNNN: ", String(describing: transaction))
-        //        RestService().postRequest("https://testing.transaction.lbfraud.ironchip.com", data: transaction)
-        let jsonData = Data(String(describing: transaction).utf8)
         
+        let properties = [
+            "cpuAbi": arch! as String,
+            "manufacturer": model!,
+            "model": modelName!,
+            "os": systemName!,
+            "version": systemVersion!
+        ]
+        let device: [String : Any] = [
+            "id": uuid!,
+            "properties": properties,
+            "rooted": rooted!
+        ]
+        let user: [String : Any] = [
+            "id": userId
+        ]
+        let geoLocation: [String : Any] = [
+            "latitude": lat,
+            "longitude": long,
+        ]
+
+        let jsonObject = [
+            "device": device,
+            "electromagneticLocation": "",
+            "extraData": jsonString,
+            "geoLocation": geoLocation,
+            "id": transactionId,
+            "user": user,
+            "connected_bssid": connectedWifi!
+        ] as [String : Any]
+        //        RestService().postRequest("https://testing.transaction.lbfraud.ironchip.com", data: transaction)
+        let jsonData = try? JSONSerialization.data(withJSONObject:jsonObject)
+
         // create post request
         let url = URL(string: "https://testing.transaction.lbfraud.ironchip.com/transaction")!
         var request = URLRequest(url: url)

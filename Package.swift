@@ -24,9 +24,6 @@ let package = Package(
         .binaryTarget(
                     name: "IronchipCommonsIos",
                     path: "frame/IronchipCommonsIos.xcframework"
-                ),
-        .testTarget(
-            name: "MyLibraryTests",
-            dependencies: ["MyLibrary"]),
+                )
     ]
 )
