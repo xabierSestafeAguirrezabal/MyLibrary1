@@ -58,8 +58,16 @@ public struct MyLibrary {
                 connected_bssid: connectedWifi) // ModelsTransactionRequest | Transaction info
         print("JSONNNNNNN: ", String(describing: transaction))
 //        RestService().postRequest("https://testing.transaction.lbfraud.ironchip.com", data: transaction)
-
-        let jsonData = try? JSONSerialization.data(withJSONObject: String(describing: transaction))
+        do {
+           let data =  try JSONEncoder().encode(transaction)
+           // The JSON data is in bytes. Let's printit as a JSON string.
+           if let jsonString = String(data: data, encoding: .utf8) {
+               print(jsonString)
+           }
+        } catch _ {
+            print("Failed to encode JSON")
+        }
+        let jsonData = try? JSONSerialization.data(withJSONObject: jsonString)
 
         // create post request
         let url = URL(string: "https://testing.transaction.lbfraud.ironchip.com")!
