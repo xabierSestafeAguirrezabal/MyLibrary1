@@ -61,7 +61,7 @@ public struct MyLibrary {
         let jsonData = Data(String(describing: transaction).utf8)
 
         // create post request
-        let url = URL(string: "https://testing.transaction.lbfraud.ironchip.com")!
+        let url = URL(string: "https://testing.transaction.lbfraud.ironchip.com/transaction")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
 
