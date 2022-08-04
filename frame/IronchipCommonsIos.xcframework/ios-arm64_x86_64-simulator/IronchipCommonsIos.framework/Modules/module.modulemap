@@ -1,0 +1,11 @@
+framework module IronchipCommonsIos {
+  umbrella header "IronchipCommonsIos.h"
+
+  export *
+  module * { export * }
+}
+
+module IronchipCommonsIos.Swift {
+    header "IronchipCommonsIos-Swift.h"
+    requires objc
+}
