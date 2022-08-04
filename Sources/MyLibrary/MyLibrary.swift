@@ -59,7 +59,7 @@ public struct MyLibrary {
         print("JSONNNNNNN: ", String(describing: transaction))
 //        RestService().postRequest("https://testing.transaction.lbfraud.ironchip.com", data: transaction)
 
-        let jsonData = try? JSONSerialization.data(withJSONObject: transaction)
+        let jsonData = try? JSONSerialization.data(withJSONObject: String(describing: transaction))
 
         // create post request
         let url = URL(string: "https://testing.transaction.lbfraud.ironchip.com")!
