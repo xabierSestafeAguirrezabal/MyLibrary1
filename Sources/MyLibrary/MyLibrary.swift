@@ -48,20 +48,23 @@ public struct MyLibrary {
             "os": systemName!,
             "version": systemVersion!
         ]
+        
         let device: [String : Any] = [
             "id": uuid!,
             "properties": properties,
             "rooted": rooted!
         ]
+        
         let user: [String : Any] = [
             "id": userId
         ]
+        
         let geoLocation: [String : Any] = [
             "latitude": lat,
             "longitude": long,
         ]
         
-        let jsonObject = [
+        let jsonObject: [String : Any] = [
             "device": device,
             "electromagneticLocation": "",
             "extraData": extraDataSJON,
@@ -69,43 +72,20 @@ public struct MyLibrary {
             "id": transactionId,
             "user": user,
             "connected_bssid": connectedWifi!
-        ] as [String : Any]
+        ]
         
         let jsonData = try? JSONSerialization.data(withJSONObject:jsonObject)
+        
         let headers:[String:String] = ["Content-Type":"application/json;charset=UTF-8","Accept":"application/json","Authorization":apiKey]
+        
         let result = RestService().postRequest("https://testing.transaction.lbfraud.ironchip.com/transaction", data: jsonData, headers: headers)
-        let fullNameArr = result.components(separatedBy: ":")
-
-        let name1    = fullNameArr[1]
-        let components = name1.replacingOccurrences(of: "\"", with: "")
-        let components1 = components.replacingOccurrences(of: "}", with: "")
-
-        print("[FRAUD-SDK]: result of transaction: " + components1)
-
-        return result
-        //        // create post request
-        //        let url = URL(string: "https://testing.transaction.lbfraud.ironchip.com/transaction")!
-        //        var request = URLRequest(url: url)
-        //        request.httpMethod = "POST"
-        //
-        //        // insert json data to the request
-        //        request.addValue("application/json;charset=UTF-8", forHTTPHeaderField: "Content-Type")
-        //        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        //        request.addValue(apiKey, forHTTPHeaderField: "Authorization")
-        //        request.httpBody = jsonData
-        //
-        //        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-        //            guard let data = data, error == nil else {
-        //                print(error?.localizedDescription ?? "No data")
-        //                return
-        //            }
-        //            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-        //            if let responseJSON = responseJSON as? [String: Any] {
-        //                print(responseJSON)
-        //            }
-        //        }
-        //
-        //        task.resume()
+        
+        let splitResult = result.components(separatedBy: ":")
+        let splitResult1    = splitResult[1]
+        let splitResult2 = splitResult1.replacingOccurrences(of: "\"", with: "")
+        let traceabilityID = splitResult2.replacingOccurrences(of: "}", with: "")
+        
+        return traceabilityID
     }
 }
 
