@@ -59,7 +59,7 @@ public struct MyLibrary {
         print("JSONNNNNNN: ", String(describing: transaction))
         
         let properties = [
-            "cpuAbi": arch! as String,
+            "cpu_abi": arch! as String,
             "manufacturer": model!,
             "model": modelName!,
             "os": systemName!,
