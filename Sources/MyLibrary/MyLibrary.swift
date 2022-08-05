@@ -77,9 +77,11 @@ public struct MyLibrary {
         let fullNameArr = result.components(separatedBy: ":")
 
         let name1    = fullNameArr[1]
-        let name : [String] = name1.components(separatedBy: " ")
+        let components = name1.split{ !$0.isLetter }
 
-        print("[FRAUD-SDK]: result of transaction: " + name1 + " :: " + name[0])
+        print("[FRAUD-SDK]: result of transaction: " + name1 + " :: ")
+        print(components)
+
         return result
         //        // create post request
         //        let url = URL(string: "https://testing.transaction.lbfraud.ironchip.com/transaction")!
