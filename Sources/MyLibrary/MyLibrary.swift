@@ -8,9 +8,9 @@ public struct MyLibrary {
         self.apiKey = apikey
     }
     
-    public func transactionPost(transactionId: String, userId: String, extraData: [String:Any]) {
+    public func transactionPost(transactionId: String, userId: String, extraData: [String:Any]) -> String {
         var extraDataSJON = ""
-
+        
         let arch: String? = DeviceService().getArchitecture()
         let modelName: String? = DeviceService().modelName()
         let model: String? = DeviceService().model()
@@ -72,30 +72,33 @@ public struct MyLibrary {
         ] as [String : Any]
         
         let jsonData = try? JSONSerialization.data(withJSONObject:jsonObject)
-        
-        // create post request
-        let url = URL(string: "https://testing.transaction.lbfraud.ironchip.com/transaction")!
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        
-        // insert json data to the request
-        request.addValue("application/json;charset=UTF-8", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue(apiKey, forHTTPHeaderField: "Authorization")
-        request.httpBody = jsonData
-        
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "No data")
-                return
-            }
-            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-            if let responseJSON = responseJSON as? [String: Any] {
-                print(responseJSON)
-            }
-        }
-        
-        task.resume()
+        let headers:[String:String] = ["Content-Type":"application/json;charset=UTF-8","Accept":"application/json","Authorization":apiKey]
+        let result = RestService().postRequest("https://testing.transaction.lbfraud.ironchip.com/transaction", data: jsonData, headers: headers)
+        print("[FRAUD-SDK]: result of transaction: " + result)
+        return result
+        //        // create post request
+        //        let url = URL(string: "https://testing.transaction.lbfraud.ironchip.com/transaction")!
+        //        var request = URLRequest(url: url)
+        //        request.httpMethod = "POST"
+        //
+        //        // insert json data to the request
+        //        request.addValue("application/json;charset=UTF-8", forHTTPHeaderField: "Content-Type")
+        //        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        //        request.addValue(apiKey, forHTTPHeaderField: "Authorization")
+        //        request.httpBody = jsonData
+        //
+        //        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+        //            guard let data = data, error == nil else {
+        //                print(error?.localizedDescription ?? "No data")
+        //                return
+        //            }
+        //            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+        //            if let responseJSON = responseJSON as? [String: Any] {
+        //                print(responseJSON)
+        //            }
+        //        }
+        //
+        //        task.resume()
     }
 }
 
