@@ -46,10 +46,8 @@ public class DeviceService {
   @objc deinit
 }
 @objc @_inheritsConvenienceInitializers public class RestService : ObjectiveC.NSObject {
-  public func hello()
-  public func getRequest(_ url: Swift.String) -> Swift.String
-  public func headRequest(_ url: Swift.String) -> Swift.String
-  public func postRequest(_ url: Swift.String, data: Foundation.Data?) -> Swift.String
+  public func getRequest(_ url: Swift.String, headers: [Swift.String : Swift.String]?) -> Swift.String
+  public func postRequest(_ url: Swift.String, data: Foundation.Data?, headers: [Swift.String : Swift.String]) -> Swift.String
   @objc override dynamic public init()
   @objc deinit
 }
