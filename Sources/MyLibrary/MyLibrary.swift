@@ -78,7 +78,9 @@ public struct MyLibrary {
 
         let name1    = fullNameArr[1]
         let components = name1.replacingOccurrences(of: "\"", with: "")
-        print("[FRAUD-SDK]: result of transaction: " + components)
+        let components1 = components.replacingOccurrences(of: "}", with: "")
+
+        print("[FRAUD-SDK]: result of transaction: " + components1)
 
         return result
         //        // create post request
