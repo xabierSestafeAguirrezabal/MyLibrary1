@@ -74,7 +74,7 @@ public struct MyLibrary {
         let jsonData = try? JSONSerialization.data(withJSONObject:jsonObject)
         let headers:[String:String] = ["Content-Type":"application/json;charset=UTF-8","Accept":"application/json","Authorization":apiKey]
         let result = RestService().postRequest("https://testing.transaction.lbfraud.ironchip.com/transaction", data: jsonData, headers: headers)
-        let fullNameArr = result.components(separatedBy: " ")
+        let fullNameArr = result.components(separatedBy: ":")
 
         let name    = fullNameArr[0]
         let name1    = fullNameArr[1]
