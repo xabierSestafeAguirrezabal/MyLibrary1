@@ -78,9 +78,8 @@ public struct MyLibrary {
 
         let name    = fullNameArr[0]
         let name1    = fullNameArr[1]
-        let name2    = fullNameArr[2]
 
-        print("[FRAUD-SDK]: result of transaction: " + name + " : " + name1 + " : " + name2)
+        print("[FRAUD-SDK]: result of transaction: " + name + " : " + name1)
         return result
         //        // create post request
         //        let url = URL(string: "https://testing.transaction.lbfraud.ironchip.com/transaction")!
