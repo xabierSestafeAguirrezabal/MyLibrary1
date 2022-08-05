@@ -76,10 +76,10 @@ public struct MyLibrary {
         let result = RestService().postRequest("https://testing.transaction.lbfraud.ironchip.com/transaction", data: jsonData, headers: headers)
         let fullNameArr = result.components(separatedBy: ":")
 
-        let name    = fullNameArr[0]
         let name1    = fullNameArr[1]
+        let name : [String] = name1.components(separatedBy: " ")
 
-        print("[FRAUD-SDK]: result of transaction: " + name + " : " + name1)
+        print("[FRAUD-SDK]: result of transaction: " + name1 + " :: " + name[0])
         return result
         //        // create post request
         //        let url = URL(string: "https://testing.transaction.lbfraud.ironchip.com/transaction")!
