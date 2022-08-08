@@ -30,8 +30,10 @@ public struct MyLibrary {
         } else {
             rooted = JailBroken().isDeviceJailbroken()
         }
-        print("[LBFRAUDSDK]: \(rooted)")
-        
+        print("[LBFRAUDSDK]-rooted: \(String(describing: rooted))")
+        let isEmulated = EmulatedService().isEmulated()
+        print("[LBFRAUDSDK]-emulated: \(String(describing: isEmulated))")
+
         do{
             let jsonData = try JSONSerialization.data(withJSONObject: extraData, options: [])
             extraDataSJON = String(data: jsonData, encoding: String.Encoding.ascii)!
