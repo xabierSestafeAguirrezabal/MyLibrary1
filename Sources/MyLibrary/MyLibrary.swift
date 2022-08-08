@@ -24,21 +24,19 @@ public struct MyLibrary {
         
         let uuid: String? = DeviceService().uuid()
         
-        let cydia: Bool? = JailBroken().isCydiaAppInstalled()
-        print("cydia \(String(describing: cydia))")
-        print(JailBroken().isDeviceJailbroken())
-
-        print(EmulatedService().isEmulated())
-
-        if cydia == true {
-            rooted = true
-        } else if rooted != true {
-            rooted = JailBroken().isDeviceJailbroken()
-        }
-        else if rooted != true {
-            rooted = EmulatedService().isEmulated()
-        }
+        let isCydiaInstalled: Bool? = JailBroken().isCydiaAppInstalled()
+        let isDeviceJailbroken: Bool? = JailBroken().isDeviceJailbroken()
+        let isEmulated: Bool? = EmulatedService().isEmulated()
         
+        print("cydia \(String(describing: isCydiaInstalled))")
+        print("isDeviceJailbroken \(String(describing: isDeviceJailbroken))")
+        print("isEmulated \(String(describing: isEmulated))")
+        
+        if ((isCydiaInstalled != nil ) || (isDeviceJailbroken != nil) || (isEmulated != nil)) {
+            rooted = true
+        } else {
+            rooted = false
+        }
         do{
             let jsonData = try JSONSerialization.data(withJSONObject: extraData, options: [])
             extraDataSJON = String(data: jsonData, encoding: String.Encoding.ascii)!
