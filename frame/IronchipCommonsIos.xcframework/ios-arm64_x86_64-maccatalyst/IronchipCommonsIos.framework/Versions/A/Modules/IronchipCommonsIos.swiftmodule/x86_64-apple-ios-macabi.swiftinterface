@@ -41,13 +41,12 @@ public class DeviceService {
   public func systemName() -> Swift.String
   public func systemVersion() -> Swift.String
   public func description() -> Swift.String
-  public func uuid() -> Swift.String
-  public func getArchitecture() -> Swift.String
+  public func uuid() -> Swift.String?
   @objc deinit
 }
 @objc @_inheritsConvenienceInitializers public class RestService : ObjectiveC.NSObject {
-  public func getRequest(_ url: Swift.String, headers: [Swift.String : Swift.String]?) -> Swift.String
-  public func postRequest(_ url: Swift.String, data: Foundation.Data?, headers: [Swift.String : Swift.String]) -> Swift.String
+  public func getRequest(_ url: Swift.String?, headers: [Swift.String : Swift.String]?) -> Swift.String?
+  public func postRequest(_ url: Swift.String?, data: Foundation.Data?, headers: [Swift.String : Swift.String]) -> Swift.String?
   @objc override dynamic public init()
   @objc deinit
 }

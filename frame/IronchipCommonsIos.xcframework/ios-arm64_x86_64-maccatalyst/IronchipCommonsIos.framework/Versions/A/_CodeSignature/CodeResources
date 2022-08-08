@@ -36,14 +36,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Vp/jDrKzsplscptQSw1SoQjcMz5QbTFzuAl9aaGupMM=
+			GYKLsD5+f8jIabfqjvEYI8iBOSoneIlPs+ixa/LWOT4=
 			</data>
 		</dict>
 		<key>Modules/IronchipCommonsIos.swiftmodule/arm64-apple-ios-macabi.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			xB9Da227DwE0w5e78tcSbHqrb5daysN3q+DUzmmQKYg=
+			/VA4hUSPdVJ5mlHNXOt00TwPhZxdVb3t6sYd65znYsg=
 			</data>
 		</dict>
 		<key>Modules/IronchipCommonsIos.swiftmodule/x86_64-apple-ios-macabi.swiftdoc</key>
@@ -57,14 +57,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			u+/KZCI5u/b4qPG+XXo90FpQ2Qt+UopSsOpdBG1Rszo=
+			OZoe3t3zogDOzHvfhdYJZDad+pgqPScHF4kthWlefrE=
 			</data>
 		</dict>
 		<key>Modules/IronchipCommonsIos.swiftmodule/x86_64-apple-ios-macabi.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			XxeGx9RRk79+z3pNEhfZVuKJceeA6KL2KCwNlln4J0o=
+			VAEB736vMNTjgyBW25y5+t7GlZut0ONhwB55qclkbK8=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
