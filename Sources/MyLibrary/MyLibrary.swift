@@ -8,10 +8,10 @@ public struct MyLibrary {
         self.apiKey = apikey
     }
     
-    public func transactionPost(transactionId: String, userId: String, extraData: [String:Any]) -> String {
+    public func transactionPost(transactionId: String, userId: String, extraData: [String:Any]) -> String? {
         var extraDataSJON = ""
         
-        let arch: String? = DeviceService().getArchitecture()
+        let arch: String? = "not available"
         let modelName: String? = DeviceService().modelName()
         let model: String? = DeviceService().model()
         let systemName: String? = DeviceService().systemName()
@@ -80,10 +80,10 @@ public struct MyLibrary {
         
         let result = RestService().postRequest("https://testing.transaction.lbfraud.ironchip.com/transaction", data: jsonData, headers: headers)
         
-        let splitResult = result.components(separatedBy: ":")
-        let splitResult1    = splitResult[1]
-        let splitResult2 = splitResult1.replacingOccurrences(of: "\"", with: "")
-        let traceabilityID = splitResult2.replacingOccurrences(of: "}", with: "")
+        let splitResult = result?.components(separatedBy: ":")
+        let splitResult1    = splitResult?[1]
+        let splitResult2 = splitResult1?.replacingOccurrences(of: "\"", with: "")
+        let traceabilityID = splitResult2?.replacingOccurrences(of: "}", with: "")
         
         return traceabilityID
     }
