@@ -25,6 +25,11 @@ public struct MyLibrary {
         let uuid: String? = DeviceService().uuid()
         
         let cydia: Bool? = JailBroken().isCydiaAppInstalled()
+        print("cydia \(String(describing: cydia))")
+        print(JailBroken().isDeviceJailbroken())
+
+        print(EmulatedService().isEmulated())
+
         if cydia == true {
             rooted = true
         } else if rooted != true {
