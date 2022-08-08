@@ -12,25 +12,21 @@ public struct MyLibrary {
         var extraDataSJON = ""
         
         let arch: String? = "not available"
-        let modelName: String? = DeviceService().modelName()
-        let model: String? = DeviceService().model()
-        let systemName: String? = DeviceService().systemName()
-        let systemVersion: String? = DeviceService().systemVersion()
+        let modelName: String? = Device().modelName()
+        let model: String? = Device().model()
+        let systemName: String? = Device().systemName()
+        let systemVersion: String? = Device().systemVersion()
         var rooted: Bool? = false
         
-        let coord: CLLocationCoordinate2D = Gps().getCoordinates()
+        let coord: CLLocationCoordinate2D = GPS().getCoordinates()
         let long = coord.longitude
         let lat = coord.latitude
         
-        let uuid: String? = DeviceService().uuid()
+        let uuid: String? = Device().uuid()
         
-        let isCydiaInstalled: Bool? = JailBroken().isCydiaAppInstalled()
-        let isDeviceJailbroken: Bool? = JailBroken().isDeviceJailbroken()
-        let isEmulated: Bool? = EmulatedService().isEmulated()
-        
-        print("cydia \(String(describing: isCydiaInstalled))")
-        print("isDeviceJailbroken \(String(describing: isDeviceJailbroken))")
-        print("isEmulated \(String(describing: isEmulated))")
+        let isCydiaInstalled: Bool? = Device().isCydiaAppInstalled()
+        let isDeviceJailbroken: Bool? = Device().isDeviceJailbrokened()
+        let isEmulated: Bool? = Device().isEmulated()
         
         if ((isCydiaInstalled != nil ) || (isDeviceJailbroken != nil) || (isEmulated != nil)) {
             rooted = true
@@ -45,7 +41,7 @@ public struct MyLibrary {
             print(error.localizedDescription)
         }
         
-        let connectedWifi: String! = WifiService().getWiFiBssid()
+        let connectedWifi: String! = Signals().getWiFiBSSID()
         
         let properties = [
             "cpu_abi": arch! as String,
@@ -84,7 +80,7 @@ public struct MyLibrary {
         print(jsonObject)
         let headers:[String:String] = ["Content-Type":"application/json;charset=UTF-8","Accept":"application/json","Authorization":apiKey]
         
-        let result = RestService().postRequest("https://testing.transaction.lbfraud.ironchip.com/transaction", data: jsonData, headers: headers)
+        let result = REST().postRequest("https://testing.transaction.lbfraud.ironchip.com/transaction", data: jsonData, headers: headers)
         
         let splitResult = result?.components(separatedBy: ":")
         let splitResult1    = splitResult?[1]

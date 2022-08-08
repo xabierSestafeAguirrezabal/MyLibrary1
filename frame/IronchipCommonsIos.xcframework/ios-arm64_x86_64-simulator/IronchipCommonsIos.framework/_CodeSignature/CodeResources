@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/IronchipCommonsIos-Swift.h</key>
 		<data>
-		8hI8jW/dhbjdyXhu10fgyWpXzLk=
+		oYx4WerzC4/pbRO6t+kYHbopito=
 		</data>
 		<key>Headers/IronchipCommonsIos.h</key>
 		<data>
@@ -22,11 +22,11 @@
 		</data>
 		<key>Modules/IronchipCommonsIos.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		fvDRTrJPbYlKGsnKROvt50dPL7Y=
+		wcJjBtR5fHL+MYO8wd4krSszHHM=
 		</data>
 		<key>Modules/IronchipCommonsIos.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		9XK9YOnzwXuTYhial6HRyZF14bg=
+		sjD6tL6VRsu2bwEk4Gh4D+zVPLw=
 		</data>
 		<key>Modules/IronchipCommonsIos.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -34,11 +34,11 @@
 		</data>
 		<key>Modules/IronchipCommonsIos.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		XchgqOyY1+HZzsPoi/fDQuqQQ3Q=
+		2VgJv/0aNtxXfzG5HLZlOHicdz8=
 		</data>
 		<key>Modules/IronchipCommonsIos.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		qFcVtsV+WBTfOtp/ZPBB80NZ2u4=
+		2ULQBOfR9JsthaoW2oHYsoCMnHM=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -51,7 +51,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			4bdx8knhLwN3TuGQ7Piboehv+FrqBUYH2Ysy59ConvE=
+			J+ghbEx6f+rN320bielD9cnuI8zGGaCKqEGZ7zPnRDs=
 			</data>
 		</dict>
 		<key>Headers/IronchipCommonsIos.h</key>
@@ -72,14 +72,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			2/+0muHiqO+IM+yD4MEoUAF++xQUm9stVY0L5lryUKo=
+			puMMAJf7H9Lk58ynTEiRawZvJS8WZHkXzYZuT5ybrfs=
 			</data>
 		</dict>
 		<key>Modules/IronchipCommonsIos.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Ln/jNkQcELfmAkWO/dlW575WIFKGFIWmDltOobau1oo=
+			ZD8QZ5RhPzuAlgt6qiXbdOBnjjPdDsvyzF+8CVnAUIQ=
 			</data>
 		</dict>
 		<key>Modules/IronchipCommonsIos.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
@@ -93,14 +93,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			5Q6uu6qlJgCjgYFOSLFVVkJ5IUnZnNtNOAAjIStZKfk=
+			YOFqNGW83OaxF6X12gn+6TU1rWdvPdamHCFhzCxKYv8=
 			</data>
 		</dict>
 		<key>Modules/IronchipCommonsIos.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			qpmHiq/QYb+hggGrT8t1iHQDYVeuBoUtXwHXm4rM3eA=
+			LSVcslF6YfyoaRtUOYYvXQUCuY3RubbcCNN5kfmTIew=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

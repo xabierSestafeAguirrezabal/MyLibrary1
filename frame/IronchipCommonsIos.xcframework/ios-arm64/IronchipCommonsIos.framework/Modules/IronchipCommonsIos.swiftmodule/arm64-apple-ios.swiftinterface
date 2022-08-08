@@ -10,30 +10,19 @@ import Swift
 import SystemConfiguration
 import UIKit
 import _Concurrency
-public class JailBroken {
-  public init()
-  public func isDeviceJailbroken() -> Swift.Bool
-  public func isCydiaAppInstalled() -> Swift.Bool
-  @objc deinit
-}
-@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class Gps : UIKit.UIViewController, CoreLocation.CLLocationManagerDelegate {
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class GPS : UIKit.UIViewController, CoreLocation.CLLocationManagerDelegate {
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
   @_Concurrency.MainActor(unsafe) public func getCoordinates() -> CoreLocation.CLLocationCoordinate2D
   @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
   @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
   @objc deinit
 }
-@objc @_inheritsConvenienceInitializers public class WifiService : ObjectiveC.NSObject {
-  public func getWiFiBssid() -> Swift.String?
+@objc @_inheritsConvenienceInitializers public class Signals : ObjectiveC.NSObject {
+  public func getWiFiBSSID() -> Swift.String?
   @objc override dynamic public init()
   @objc deinit
 }
-public class EmulatedService {
-  public init()
-  public func isEmulated() -> Swift.Bool
-  @objc deinit
-}
-public class DeviceService {
+public class Device {
   public init()
   public func modelName() -> Swift.String
   public func model() -> Swift.String
@@ -42,9 +31,12 @@ public class DeviceService {
   public func systemVersion() -> Swift.String
   public func description() -> Swift.String
   public func uuid() -> Swift.String?
+  public func isEmulated() -> Swift.Bool
+  public func isDeviceJailbrokened() -> Swift.Bool
+  public func isCydiaAppInstalled() -> Swift.Bool
   @objc deinit
 }
-@objc @_inheritsConvenienceInitializers public class RestService : ObjectiveC.NSObject {
+@objc @_inheritsConvenienceInitializers public class REST : ObjectiveC.NSObject {
   public func getRequest(_ url: Swift.String?, headers: [Swift.String : Swift.String]?) -> Swift.String?
   public func postRequest(_ url: Swift.String?, data: Foundation.Data?, headers: [Swift.String : Swift.String]) -> Swift.String?
   @objc override dynamic public init()

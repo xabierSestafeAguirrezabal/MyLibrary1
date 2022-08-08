@@ -221,25 +221,25 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 @class NSBundle;
 @class NSCoder;
 
-SWIFT_CLASS("_TtC18IronchipCommonsIos3Gps")
-@interface Gps : UIViewController <CLLocationManagerDelegate>
+SWIFT_CLASS("_TtC18IronchipCommonsIos3GPS")
+@interface GPS : UIViewController <CLLocationManagerDelegate>
 - (void)viewDidLoad;
 - (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
 @end
 
 
-SWIFT_CLASS("_TtC18IronchipCommonsIos11RestService")
-@interface RestService : NSObject
+SWIFT_CLASS("_TtC18IronchipCommonsIos4REST")
+@interface REST : NSObject
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
 
-
-SWIFT_CLASS("_TtC18IronchipCommonsIos11WifiService")
-@interface WifiService : NSObject
+SWIFT_CLASS("_TtC18IronchipCommonsIos7Signals")
+@interface Signals : NSObject
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
+
 
 #if __has_attribute(external_source_symbol)
 # pragma clang attribute pop
@@ -469,25 +469,25 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 @class NSBundle;
 @class NSCoder;
 
-SWIFT_CLASS("_TtC18IronchipCommonsIos3Gps")
-@interface Gps : UIViewController <CLLocationManagerDelegate>
+SWIFT_CLASS("_TtC18IronchipCommonsIos3GPS")
+@interface GPS : UIViewController <CLLocationManagerDelegate>
 - (void)viewDidLoad;
 - (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
 @end
 
 
-SWIFT_CLASS("_TtC18IronchipCommonsIos11RestService")
-@interface RestService : NSObject
+SWIFT_CLASS("_TtC18IronchipCommonsIos4REST")
+@interface REST : NSObject
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
 
-
-SWIFT_CLASS("_TtC18IronchipCommonsIos11WifiService")
-@interface WifiService : NSObject
+SWIFT_CLASS("_TtC18IronchipCommonsIos7Signals")
+@interface Signals : NSObject
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
+
 
 #if __has_attribute(external_source_symbol)
 # pragma clang attribute pop
