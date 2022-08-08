@@ -78,7 +78,7 @@ public struct MyLibrary {
         ]
         
         let jsonData = try? JSONSerialization.data(withJSONObject:jsonObject)
-        print(jsonData)
+        print(String(decoding: jsonData!, as: UTF8.self))
         let headers:[String:String] = ["Content-Type":"application/json;charset=UTF-8","Accept":"application/json","Authorization":apiKey]
         
         let result = RestService().postRequest("https://testing.transaction.lbfraud.ironchip.com/transaction", data: jsonData, headers: headers)
