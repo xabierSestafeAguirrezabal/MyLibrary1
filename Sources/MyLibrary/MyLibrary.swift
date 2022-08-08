@@ -27,13 +27,13 @@ public struct MyLibrary {
         let cydia: Bool? = JailBroken().isCydiaAppInstalled()
         if cydia == true {
             rooted = true
-        } else {
+        } else if rooted != true {
             rooted = JailBroken().isDeviceJailbroken()
         }
-        print("[LBFRAUDSDK]-rooted: \(String(describing: rooted))")
-        let isEmulated = EmulatedService().isEmulated()
-        print("[LBFRAUDSDK]-emulated: \(String(describing: isEmulated))")
-
+        else if rooted != true {
+            rooted = EmulatedService().isEmulated()
+        }
+        
         do{
             let jsonData = try JSONSerialization.data(withJSONObject: extraData, options: [])
             extraDataSJON = String(data: jsonData, encoding: String.Encoding.ascii)!
