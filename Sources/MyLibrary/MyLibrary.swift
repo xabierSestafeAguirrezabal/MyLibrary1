@@ -26,6 +26,7 @@ public struct MyLibrary {
     private func generateJSON(transactionId: String, userId: String, extraData: [String:Any]) -> [String:Any] {
         var transactionJSON = getInformation()
         var extraDataJSON = ""
+        let user = getUser(userId: userId)
         
         do{
             let jsonData = try JSONSerialization.data(withJSONObject: extraData, options: [])
@@ -35,10 +36,18 @@ public struct MyLibrary {
         }
         
         transactionJSON.updateValue(extraDataJSON, forKey: "extraData")
-        transactionJSON.updateValue(userId, forKey: "user")
+        transactionJSON.updateValue(user, forKey: "user")
         transactionJSON.updateValue(transactionId, forKey: "id")
         print(transactionJSON)
+        
         return transactionJSON
+    }
+    
+    private func getUser(userId: String) -> [String : Any] {
+        let user: [String : Any] = [
+            "id": userId
+        ]
+        return user
     }
     
     private func getGeoLocation() -> [String : Any] {
@@ -111,3 +120,25 @@ public struct MyLibrary {
     }
 }
 
+
+       
+       let user: [String : Any] = [
+           "id": userId
+       ]
+       
+       let geoLocation: [String : Any] = [
+           "latitude": lat,
+           "longitude": long,
+       ]
+       
+       let jsonObject: [String : Any] = [
+           "device": device,
+           "electromagneticLocation": "",
+           "extraData": extraDataSJON,
+           "geoLocation": geoLocation,
+           "id": transactionId,
+           "user": user,
+           "connected_bssid": connectedWifi!
+       ]
+       
+       let jsonData = try? JSONSerialization.data(withJSONObject:jsonObject)
