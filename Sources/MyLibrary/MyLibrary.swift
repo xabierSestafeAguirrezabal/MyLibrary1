@@ -13,20 +13,20 @@ public struct MyLibrary {
         
         let headers:[String:String] = ["Content-Type":"application/json;charset=UTF-8","Accept":"application/json","Authorization":apiKey]
         
-        let result = REST().postRequest("https://testing.transaction.lbfraud.ironchip.com/transaction", data: generatedJSON, headers: headers)
+        let result = REST().postRequest("https://testing.transaction.lbfraud.ironchip.com/transaction", data: generatedJSON, headers: headers)!
         
         struct Person: Codable {
             let a: String
         }
+        do{
+        let result1 = try JSONDecoder().decode([Person].self, from: result)
+            for item in result1 {
+                print(item.a)
+            }
+        } catch { print(error) }
         
-        print(result! as NSData)
-        print("-------------------------")
-        print(String(decoding: result ?? Data.init(), as: UTF8.self))
-        print("-------------------------")
-        print(        result?.description ?? ""
-        )
-        let decodedPerson = try? JSONDecoder().decode(Person.self, from: result!)
-        print(decodedPerson ?? "Error decode")
+        
+                                                                        
         //        let splitResult = result?.components(separatedBy: ":")
         //        let splitResult1    = splitResult?[1]
         //        let splitResult2 = splitResult1?.replacingOccurrences(of: "\"", with: "")
