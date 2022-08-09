@@ -21,7 +21,7 @@ public struct MyLibrary {
         
         do{
         let result1 = try JSONDecoder().decode(Person.self, from: result)
-                print(result1)
+            print(result1.a)
         } catch { print(error) }
         
         
