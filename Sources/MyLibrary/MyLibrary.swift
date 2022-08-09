@@ -18,11 +18,10 @@ public struct MyLibrary {
         struct Person: Codable {
             let a: String
         }
+        
         do{
-        let result1 = try JSONDecoder().decode([Person].self, from: result)
-            for item in result1 {
-                print(item.a)
-            }
+        let result1 = try JSONDecoder().decode(Person.self, from: result)
+                print(result1)
         } catch { print(error) }
         
         
