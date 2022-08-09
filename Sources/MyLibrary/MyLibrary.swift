@@ -106,7 +106,6 @@ public struct MyLibrary {
     public func sendTransaction(transactionId: String, userId: String, extraData: [String:Any]) -> String? {
         let generatedJSON = generateJSON(transactionId: transactionId, userId: userId, extraData: extraData)
         let jsonData = try? JSONSerialization.data(withJSONObject: generatedJSON)
-        print(jsonData ?? "pepe")
         let headers:[String:String] = ["Content-Type":"application/json;charset=UTF-8","Accept":"application/json","Authorization":apiKey]
         
         let result = REST().postRequest("https://testing.transaction.lbfraud.ironchip.com/transaction", data: jsonData, headers: headers)
