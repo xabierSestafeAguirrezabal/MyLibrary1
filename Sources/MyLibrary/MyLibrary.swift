@@ -101,7 +101,7 @@ public struct MyLibrary {
         let headers:[String:String] = ["Content-Type":"application/json;charset=UTF-8","Accept":"application/json","Authorization":apiKey]
         
         let result = REST().postRequest("https://testing.transaction.lbfraud.ironchip.com/transaction", data: jsonData, headers: headers)
-        
+        print(result ?? "default")
         let splitResult = result?.components(separatedBy: ":")
         let splitResult1    = splitResult?[1]
         let splitResult2 = splitResult1?.replacingOccurrences(of: "\"", with: "")
