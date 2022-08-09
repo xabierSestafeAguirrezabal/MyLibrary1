@@ -37,7 +37,7 @@ public struct MyLibrary {
         transactionJSON.updateValue("extraData", forKey: extraDataJSON)
         transactionJSON.updateValue("user", forKey: userId)
         transactionJSON.updateValue("id", forKey: transactionId)
-        
+        print(transactionJSON)
         return transactionJSON
     }
     
