@@ -12,7 +12,7 @@ import UIKit
 import _Concurrency
 @objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class GPS : UIKit.UIViewController, CoreLocation.CLLocationManagerDelegate {
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
-  @_Concurrency.MainActor(unsafe) public func getCoordinates() -> CoreLocation.CLLocationCoordinate2D
+  @_Concurrency.MainActor(unsafe) public func getCoordinates() -> CoreLocation.CLLocationCoordinate2D?
   @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
   @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
   @objc deinit
@@ -37,8 +37,8 @@ public class Device {
   @objc deinit
 }
 @objc @_inheritsConvenienceInitializers public class REST : ObjectiveC.NSObject {
-  public func getRequest(_ url: Swift.String?, headers: [Swift.String : Swift.String]?) -> Swift.String?
-  public func postRequest(_ url: Swift.String?, data: Foundation.Data?, headers: [Swift.String : Swift.String]) -> Swift.String?
+  public func getRequest(_ url: Swift.String?, headers: [Swift.String : Swift.String]?) -> Foundation.Data?
+  public func postRequest(_ url: Swift.String?, data: Foundation.Data?, headers: [Swift.String : Swift.String]) -> Foundation.Data?
   @objc override dynamic public init()
   @objc deinit
 }

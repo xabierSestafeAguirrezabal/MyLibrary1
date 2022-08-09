@@ -8,26 +8,47 @@ public struct MyLibrary {
         self.apiKey = apikey
     }
     
-    private func getInformation() -> [String : Any] {
+    public func sendTransaction(transactionId: String, userId: String, extraData: [String:Any]) -> String? {
+        let generatedJSON = getTransactionJSON(transactionId: transactionId, userId: userId, extraData: extraData)
+        
+        let headers:[String:String] = ["Content-Type":"application/json;charset=UTF-8","Accept":"application/json","Authorization":apiKey]
+        
+        let result = REST().postRequest("https://testing.transaction.lbfraud.ironchip.com/transaction", data: generatedJSON, headers: headers)
+        struct Person: Codable {
+            let a: String
+            let b: String
+        }
+        let decodedPerson = try? JSONDecoder().decode(Person.self, from: result!)
+        print(decodedPerson!)
+//        let splitResult = result?.components(separatedBy: ":")
+//        let splitResult1    = splitResult?[1]
+//        let splitResult2 = splitResult1?.replacingOccurrences(of: "\"", with: "")
+//        let traceabilityID = splitResult2?.replacingOccurrences(of: "}", with: "")
+        
+        return "traceabilityID"
+    }
+    
+    private func getTransactionData() -> [String : Any] {
         let connectedBSSID: String = getConnectedBSSID()
         let device: [String : Any] = getDeviceInformation()
         let geoLocation: [String : Any] = getGeoLocation()
         
-        let jsonObject: [String : Any] = [
+        return [
             "device": device,
             "electromagneticLocation": "",
             "geoLocation": geoLocation,
             "connected_bssid": connectedBSSID
         ]
         
-        return jsonObject
     }
     
-    private func generateJSON(transactionId: String, userId: String, extraData: [String:Any]) -> [String:Any] {
-        var transactionJSON = getInformation()
-        var extraDataJSON = ""
+    private func getTransactionJSON(transactionId: String, userId: String, extraData: [String:Any]) -> Data? {
+        let transactionData = getTransactionData()
         let user = getUser(userId: userId)
         
+        
+        var extraDataJSON = ""
+
         do{
             let jsonData = try JSONSerialization.data(withJSONObject: extraData, options: [])
             extraDataJSON = String(data: jsonData, encoding: String.Encoding.ascii)!
@@ -35,18 +56,25 @@ public struct MyLibrary {
             print(error.localizedDescription)
         }
         
+        
+        var transactionJSON = transactionData;
+        
         transactionJSON.updateValue(extraDataJSON, forKey: "extraData")
         transactionJSON.updateValue(user, forKey: "user")
         transactionJSON.updateValue(transactionId, forKey: "id")
-        print(transactionJSON)
         
-        return transactionJSON
+        
+        let jsonData = try? JSONSerialization.data(withJSONObject: transactionJSON)
+
+        
+        return jsonData
     }
     
     private func getUser(userId: String) -> [String : Any] {
         let user: [String : Any] = [
             "id": userId
         ]
+        
         return user
     }
     
@@ -78,13 +106,7 @@ public struct MyLibrary {
         let systemVersion: String = Device().systemVersion()
         let uuid: String? = Device().uuid()
         
-        var rooted: Bool = false
-        
-        if ((isCydiaInstalled ) || (isDeviceJailbroken) || (isEmulated)) {
-            rooted = true
-        } else {
-            rooted = false
-        }
+        let rooted: Bool = (isCydiaInstalled) || (isDeviceJailbroken) || (isEmulated)
         
         let properties = [
             "cpu_abi": arch,
@@ -103,41 +125,6 @@ public struct MyLibrary {
         return device
     }
     
-    public func sendTransaction(transactionId: String, userId: String, extraData: [String:Any]) -> String? {
-        let generatedJSON = generateJSON(transactionId: transactionId, userId: userId, extraData: extraData)
-        let jsonData = try? JSONSerialization.data(withJSONObject: generatedJSON)
-        let headers:[String:String] = ["Content-Type":"application/json;charset=UTF-8","Accept":"application/json","Authorization":apiKey]
-        
-        let result = REST().postRequest("https://testing.transaction.lbfraud.ironchip.com/transaction", data: jsonData, headers: headers)
-        print(result ?? "default")
-        let splitResult = result?.components(separatedBy: ":")
-        let splitResult1    = splitResult?[1]
-        let splitResult2 = splitResult1?.replacingOccurrences(of: "\"", with: "")
-        let traceabilityID = splitResult2?.replacingOccurrences(of: "}", with: "")
-        
-        return traceabilityID
-    }
+ 
 }
 
-
-//
-//       let user: [String : Any] = [
-//           "id": userId
-//       ]
-//
-//       let geoLocation: [String : Any] = [
-//           "latitude": lat,
-//           "longitude": long,
-//       ]
-//
-//       let jsonObject: [String : Any] = [
-//           "device": device,
-//           "electromagneticLocation": "",
-//           "extraData": extraDataSJON,
-//           "geoLocation": geoLocation,
-//           "id": transactionId,
-//           "user": user,
-//           "connected_bssid": connectedWifi!
-//       ]
-//
-//       let jsonData = try? JSONSerialization.data(withJSONObject:jsonObject)
