@@ -18,8 +18,10 @@ public struct MyLibrary {
             let a: String
             let b: String
         }
+        
+        print(result ?? "error result")
         let decodedPerson = try? JSONDecoder().decode(Person.self, from: result!)
-        print(decodedPerson!)
+        print(decodedPerson ?? "Error decode")
 //        let splitResult = result?.components(separatedBy: ":")
 //        let splitResult1    = splitResult?[1]
 //        let splitResult2 = splitResult1?.replacingOccurrences(of: "\"", with: "")
@@ -63,9 +65,7 @@ public struct MyLibrary {
         transactionJSON.updateValue(user, forKey: "user")
         transactionJSON.updateValue(transactionId, forKey: "id")
         
-        
         let jsonData = try? JSONSerialization.data(withJSONObject: transactionJSON)
-
         
         return jsonData
     }
