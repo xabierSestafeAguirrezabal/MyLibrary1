@@ -79,7 +79,7 @@ public struct MyLibrary {
     }
     
     private func getGeoLocation() -> [String : Any] {
-        let coord: CLLocationCoordinate2D = GPS().getCoordinates()
+        let coord: CLLocationCoordinate2D = GPS().getCoordinates()!
         
         let geoLocation: [String : Any] = [
             "latitude": coord.latitude,
