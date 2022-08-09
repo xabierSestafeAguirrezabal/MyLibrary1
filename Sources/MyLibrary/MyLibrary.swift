@@ -21,9 +21,7 @@ public struct MyLibrary {
         }
         do {
             let decoded = try JSONDecoder().decode([String: String].self, from: result)
-            print(decoded.values[0].utf8)
-            print(decoded.values[0].propertyList())
-            print(decoded.values[0].description)
+            print(decoded.values.description)
 
         
         } catch {}
