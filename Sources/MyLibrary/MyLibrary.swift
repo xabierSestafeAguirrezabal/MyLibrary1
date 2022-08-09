@@ -121,24 +121,24 @@ public struct MyLibrary {
 }
 
 
-       
-       let user: [String : Any] = [
-           "id": userId
-       ]
-       
-       let geoLocation: [String : Any] = [
-           "latitude": lat,
-           "longitude": long,
-       ]
-       
-       let jsonObject: [String : Any] = [
-           "device": device,
-           "electromagneticLocation": "",
-           "extraData": extraDataSJON,
-           "geoLocation": geoLocation,
-           "id": transactionId,
-           "user": user,
-           "connected_bssid": connectedWifi!
-       ]
-       
-       let jsonData = try? JSONSerialization.data(withJSONObject:jsonObject)
+//       
+//       let user: [String : Any] = [
+//           "id": userId
+//       ]
+//       
+//       let geoLocation: [String : Any] = [
+//           "latitude": lat,
+//           "longitude": long,
+//       ]
+//       
+//       let jsonObject: [String : Any] = [
+//           "device": device,
+//           "electromagneticLocation": "",
+//           "extraData": extraDataSJON,
+//           "geoLocation": geoLocation,
+//           "id": transactionId,
+//           "user": user,
+//           "connected_bssid": connectedWifi!
+//       ]
+//       
+//       let jsonData = try? JSONSerialization.data(withJSONObject:jsonObject)
