@@ -34,9 +34,9 @@ public struct MyLibrary {
             print(error.localizedDescription)
         }
         
-        transactionJSON.updateValue("extraData", forKey: extraDataJSON)
-        transactionJSON.updateValue("user", forKey: userId)
-        transactionJSON.updateValue("id", forKey: transactionId)
+        transactionJSON.updateValue(extraDataJSON, forKey: "extraData")
+        transactionJSON.updateValue(userId, forKey: "user")
+        transactionJSON.updateValue(transactionId, forKey: "id")
         print(transactionJSON)
         return transactionJSON
     }
