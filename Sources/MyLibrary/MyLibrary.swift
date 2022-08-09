@@ -23,7 +23,8 @@ public struct MyLibrary {
         return jsonObject
     }
     
-    private func generateJSON(transactionId: String, userId: String, extraData: [String:Any]) {
+    private func generateJSON(transactionId: String, userId: String, extraData: [String:Any]) -> [String:Any] {
+        
         var extraDataSJON = ""
         
         var getInfo = getInformation()
@@ -34,8 +35,12 @@ public struct MyLibrary {
         } catch{
             print(error.localizedDescription)
         }
+        
         getInfo.updateValue("extraData", forKey: extraDataSJON)
-        print(getInfo)
+        getInfo.updateValue("user", forKey: userId)
+        getInfo.updateValue("id", forKey: transactionId)
+
+        return getInfo
     }
     
     private func getGeoLocation() -> [String : Any] {
@@ -90,9 +95,9 @@ public struct MyLibrary {
     public func transactionPost(transactionId: String, userId: String, extraData: [String:Any]) -> String? {
         
         
-        generateJSON(transactionId: transactionId, userId: userId, extraData: extraData)
+         let jSon = generateJSON(transactionId: transactionId, userId: userId, extraData: extraData)
         
-        
+        print(jSon)
         
         
         
@@ -126,19 +131,17 @@ public struct MyLibrary {
         //            print(error.localizedDescription)
         //        }
         //
-        //        let jsonData = try? JSONSerialization.data(withJSONObject:jsonObject)
-        //        print(jsonObject)
-        //        let headers:[String:String] = ["Content-Type":"application/json;charset=UTF-8","Accept":"application/json","Authorization":apiKey]
-        //
-        //        let result = REST().postRequest("https://testing.transaction.lbfraud.ironchip.com/transaction", data: jsonData, headers: headers)
-        //
-        //        let splitResult = result?.components(separatedBy: ":")
-        //        let splitResult1    = splitResult?[1]
-        //        let splitResult2 = splitResult1?.replacingOccurrences(of: "\"", with: "")
-        //        let traceabilityID = splitResult2?.replacingOccurrences(of: "}", with: "")
-        //
-        //        return traceabilityID
-        return "1234"
+                let jsonData = try? JSONSerialization.data(withJSONObject:jSon)
+                let headers:[String:String] = ["Content-Type":"application/json;charset=UTF-8","Accept":"application/json","Authorization":apiKey]
+        
+                let result = REST().postRequest("https://testing.transaction.lbfraud.ironchip.com/transaction", data: jsonData, headers: headers)
+        
+                let splitResult = result?.components(separatedBy: ":")
+                let splitResult1    = splitResult?[1]
+                let splitResult2 = splitResult1?.replacingOccurrences(of: "\"", with: "")
+                let traceabilityID = splitResult2?.replacingOccurrences(of: "}", with: "")
+        
+                return traceabilityID
     }
 }
 
