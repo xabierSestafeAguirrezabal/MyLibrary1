@@ -14,9 +14,9 @@ public struct MyLibrary {
         let headers:[String:String] = ["Content-Type":"application/json;charset=UTF-8","Accept":"application/json","Authorization":apiKey]
         
         let result = REST().postRequest("https://testing.transaction.lbfraud.ironchip.com/transaction", data: generatedJSON, headers: headers)
+        
         struct Person: Codable {
             let a: String
-            let b: String
         }
         
         print(result ?? "error result")
