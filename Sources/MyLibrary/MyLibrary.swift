@@ -15,16 +15,19 @@ public struct MyLibrary {
         
         let result = REST().postRequest("https://testing.transaction.lbfraud.ironchip.com/transaction", data: generatedJSON, headers: headers)!
         
-        struct Person: Codable {
-            let a: String
+        struct Sentence : Codable {
+            let sentence : String
+            let lang : String
         }
+
+        do {
+            let jsonString = String(data: result, encoding: .utf8)!
+            print(jsonString)
+            
+            let decodedSentences = try JSONDecoder().decode([Sentence].self, from: result)
+            print(decodedSentences)
         
-        do{
-        let result1 = try JSONDecoder().decode(Person.self, from: result)
-            print(result1.a)
-        } catch { print(error) }
-        
-        
+        } catch {}
                                                                         
         //        let splitResult = result?.components(separatedBy: ":")
         //        let splitResult1    = splitResult?[1]
