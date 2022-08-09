@@ -23,6 +23,21 @@ public struct MyLibrary {
         return jsonObject
     }
     
+    private func generateJSON(transactionId: String, userId: String, extraData: [String:Any]) {
+        var extraDataSJON = ""
+        
+        var getInfo = getInformation()
+        do{
+            let jsonData = try JSONSerialization.data(withJSONObject: extraData, options: [])
+            extraDataSJON = String(data: jsonData, encoding: String.Encoding.ascii)!
+            
+        } catch{
+            print(error.localizedDescription)
+        }
+        getInfo.updateValue("extraData", forKey: extraDataSJON)
+        print(getInfo)
+    }
+    
     private func getGeoLocation() -> [String : Any] {
         let coord: CLLocationCoordinate2D = GPS().getCoordinates()
         let geoLocation: [String : Any] = [
@@ -40,7 +55,6 @@ public struct MyLibrary {
     
     private func getDeviceInformation() -> [String : Any] {
         let arch: String = "not available"
-//        var extraDataSJON = ""
         let isCydiaInstalled: Bool = Device().isCydiaAppInstalled()
         let isDeviceJailbroken: Bool = Device().isDeviceJailbrokened()
         let isEmulated: Bool = Device().isEmulated()
@@ -49,7 +63,7 @@ public struct MyLibrary {
         let systemName: String = Device().systemName()
         let systemVersion: String = Device().systemVersion()
         let uuid: String? = Device().uuid()
-
+        
         var rooted: Bool? = false
         
         if ((isCydiaInstalled ) || (isDeviceJailbroken) || (isEmulated)) {
@@ -74,59 +88,56 @@ public struct MyLibrary {
     }
     
     public func transactionPost(transactionId: String, userId: String, extraData: [String:Any]) -> String? {
-     
-        var getInfo = getInformation()
-        print(getInfo)
-        getInfo.updateValue("pepe", forKey: "pepa")
-        print(getInfo)
-
-
         
         
-       
-
+        generateJSON(transactionId: transactionId, userId: userId, extraData: extraData)
         
         
-//
-//
-//        let user: [String : Any] = [
-//            "id": userId
-//        ]
-//
-//
-//
-//
-//
-//        let jsonObject: [String : Any] = [
-//            "device": device,
-//            "electromagneticLocation": "",
-//            "extraData": extraDataSJON,
-//            "geoLocation": geoLocation,
-//            "id": transactionId,
-//            "user": user,
-//            "connected_bssid": connectedWifi!
-//        ]
-//
-//        do{
-//            let jsonData = try JSONSerialization.data(withJSONObject: extraData, options: [])
-//            extraDataSJON = String(data: jsonData, encoding: String.Encoding.ascii)!
-//
-//        } catch{
-//            print(error.localizedDescription)
-//        }
-//
-//        let jsonData = try? JSONSerialization.data(withJSONObject:jsonObject)
-//        print(jsonObject)
-//        let headers:[String:String] = ["Content-Type":"application/json;charset=UTF-8","Accept":"application/json","Authorization":apiKey]
-//
-//        let result = REST().postRequest("https://testing.transaction.lbfraud.ironchip.com/transaction", data: jsonData, headers: headers)
-//
-//        let splitResult = result?.components(separatedBy: ":")
-//        let splitResult1    = splitResult?[1]
-//        let splitResult2 = splitResult1?.replacingOccurrences(of: "\"", with: "")
-//        let traceabilityID = splitResult2?.replacingOccurrences(of: "}", with: "")
-//
-//        return traceabilityID
+        
+        
+        
+        
+        
+        //
+        //
+        //        let user: [String : Any] = [
+        //            "id": userId
+        //        ]
+        //
+        //
+        //
+        //
+        //
+        //        let jsonObject: [String : Any] = [
+        //            "device": device,
+        //            "electromagneticLocation": "",
+        //            "extraData": extraDataSJON,
+        //            "geoLocation": geoLocation,
+        //            "id": transactionId,
+        //            "user": user,
+        //            "connected_bssid": connectedWifi!
+        //        ]
+        //
+        //        do{
+        //            let jsonData = try JSONSerialization.data(withJSONObject: extraData, options: [])
+        //            extraDataSJON = String(data: jsonData, encoding: String.Encoding.ascii)!
+        //
+        //        } catch{
+        //            print(error.localizedDescription)
+        //        }
+        //
+        //        let jsonData = try? JSONSerialization.data(withJSONObject:jsonObject)
+        //        print(jsonObject)
+        //        let headers:[String:String] = ["Content-Type":"application/json;charset=UTF-8","Accept":"application/json","Authorization":apiKey]
+        //
+        //        let result = REST().postRequest("https://testing.transaction.lbfraud.ironchip.com/transaction", data: jsonData, headers: headers)
+        //
+        //        let splitResult = result?.components(separatedBy: ":")
+        //        let splitResult1    = splitResult?[1]
+        //        let splitResult2 = splitResult1?.replacingOccurrences(of: "\"", with: "")
+        //        let traceabilityID = splitResult2?.replacingOccurrences(of: "}", with: "")
+        //
+        //        return traceabilityID
         return "1234"
     }
 }
