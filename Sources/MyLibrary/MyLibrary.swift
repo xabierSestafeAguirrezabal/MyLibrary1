@@ -19,13 +19,17 @@ public struct MyLibrary {
             let a: String
         }
         
-        print(result ?? "error result")
+        print(result! as NSData)
+        print("-------------------------")
+        print(String(decoding: result ?? Data.init(), as: UTF8.self))
+        print("-------------------------")
+
         let decodedPerson = try? JSONDecoder().decode(Person.self, from: result!)
         print(decodedPerson ?? "Error decode")
-//        let splitResult = result?.components(separatedBy: ":")
-//        let splitResult1    = splitResult?[1]
-//        let splitResult2 = splitResult1?.replacingOccurrences(of: "\"", with: "")
-//        let traceabilityID = splitResult2?.replacingOccurrences(of: "}", with: "")
+        //        let splitResult = result?.components(separatedBy: ":")
+        //        let splitResult1    = splitResult?[1]
+        //        let splitResult2 = splitResult1?.replacingOccurrences(of: "\"", with: "")
+        //        let traceabilityID = splitResult2?.replacingOccurrences(of: "}", with: "")
         
         return "traceabilityID"
     }
@@ -50,7 +54,7 @@ public struct MyLibrary {
         
         
         var extraDataJSON = ""
-
+        
         do{
             let jsonData = try JSONSerialization.data(withJSONObject: extraData, options: [])
             extraDataJSON = String(data: jsonData, encoding: String.Encoding.ascii)!
@@ -125,6 +129,6 @@ public struct MyLibrary {
         return device
     }
     
- 
+    
 }
 
