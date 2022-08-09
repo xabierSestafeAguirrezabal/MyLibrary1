@@ -21,11 +21,8 @@ public struct MyLibrary {
         }
 
         do {
-            let jsonString = String(data: result, encoding: .utf8)!
-            print(jsonString)
-            
-            let decodedSentences = try JSONDecoder().decode([Sentence].self, from: result)
-            print(decodedSentences)
+            let decoded = try JSONDecoder().decode([String: String].self, from: result)
+            print(decoded.description)
         
         } catch {}
                                                                         
