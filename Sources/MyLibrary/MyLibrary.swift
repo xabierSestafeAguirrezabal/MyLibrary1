@@ -8,7 +8,7 @@ public struct MyLibrary {
         self.apiKey = apikey
     }
     
-    public func sendTransaction(transactionId: String, userId: String, extraData: [String:Any]) -> String? {
+    public func sendTransaction(transactionId: String, userId: String, extraData: [String:Any]) -> Dictionary<String, String>.Values? {
         let generatedJSON = getTransactionJSON(transactionId: transactionId, userId: userId, extraData: extraData)
         
         let headers:[String:String] = ["Content-Type":"application/json;charset=UTF-8","Accept":"application/json","Authorization":apiKey]
@@ -19,19 +19,13 @@ public struct MyLibrary {
             let sentence : String
             let lang : String
         }
+        var decoded: [String:String] = [:]
         do {
-            let decoded = try JSONDecoder().decode([String: String].self, from: result)
-            print(decoded.values.description)
-
+              decoded = try JSONDecoder().decode([String: String].self, from: result)
         
         } catch {}
-                                                                        
-        //        let splitResult = result?.components(separatedBy: ":")
-        //        let splitResult1    = splitResult?[1]
-        //        let splitResult2 = splitResult1?.replacingOccurrences(of: "\"", with: "")
-        //        let traceabilityID = splitResult2?.replacingOccurrences(of: "}", with: "")
         
-        return "traceabilityID"
+        return decoded.values
     }
     
     private func getTransactionData() -> [String : Any] {
