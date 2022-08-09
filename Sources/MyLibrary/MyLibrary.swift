@@ -23,7 +23,8 @@ public struct MyLibrary {
         print("-------------------------")
         print(String(decoding: result ?? Data.init(), as: UTF8.self))
         print("-------------------------")
-
+        print(        result?.description ?? ""
+        )
         let decodedPerson = try? JSONDecoder().decode(Person.self, from: result!)
         print(decodedPerson ?? "Error decode")
         //        let splitResult = result?.components(separatedBy: ":")
