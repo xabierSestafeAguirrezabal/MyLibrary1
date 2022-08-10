@@ -21,7 +21,7 @@ public struct MyLibrary {
             decoded = try JSONDecoder().decode([String: String].self, from: result)
         } catch {}
         
-        return decoded.description
+        return decoded.values.description
     }
     
     private func getTransactionData() -> [String : Any] {
