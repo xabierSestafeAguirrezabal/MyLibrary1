@@ -8,24 +8,20 @@ public struct MyLibrary {
         self.apiKey = apikey
     }
     
-    public func sendTransaction(transactionId: String, userId: String, extraData: [String:Any]) -> Dictionary<String, String>.Values? {
+    public func sendTransaction(transactionId: String, userId: String, extraData: [String:Any]) -> String {
         let generatedJSON = getTransactionJSON(transactionId: transactionId, userId: userId, extraData: extraData)
         
         let headers:[String:String] = ["Content-Type":"application/json;charset=UTF-8","Accept":"application/json","Authorization":apiKey]
         
         let result = REST().postRequest("https://testing.transaction.lbfraud.ironchip.com/transaction", data: generatedJSON, headers: headers)!
         
-        struct Sentence : Codable {
-            let sentence : String
-            let lang : String
-        }
         var decoded: [String:String] = [:]
+        
         do {
             decoded = try JSONDecoder().decode([String: String].self, from: result)
-            
         } catch {}
         
-        return decoded.values
+        return decoded.values as String
     }
     
     private func getTransactionData() -> [String : Any] {
@@ -39,7 +35,6 @@ public struct MyLibrary {
             "geoLocation": geoLocation,
             "connected_bssid": connectedBSSID
         ]
-        
     }
     
     private func getTransactionJSON(transactionId: String, userId: String, extraData: [String:Any]) -> Data? {
